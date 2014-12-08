@@ -90,43 +90,70 @@ var makeChangesSubmitButtonPressed = function(e) {
         valid = false;
         nameError.hidden = false;
     }
-
+	
+	//Checks to make sure there is a product description
      if (description.value == "") {
       valid = false;
       document.getElementById('nameValidation').innerHTML = "You must enter a description";
       document.getElementById('nameValidation').hidden = false;
     }
 
+	//Quantity can't be a negative number
     if (quantity.value < 0) {
         valid = false;
-        document.getElementById('nameValidation').innerHTML = "The quantity must be greater than 0";
+        document.getElementById('nameValidation').innerHTML = "The quantity must be greater than or equal to 0";
         document.getElementById('nameValidation').hidden = false;
     }
 
+	//Have to enter something for quantity
     if (quantity.value == "") {
         valid = false;
         document.getElementById('nameValidation').innerHTML = "You must enter a quantity value";
         document.getElementById('nameValidation').hidden = false;
     }
 
+	//Make sure quantity is a number
     if (isNaN(quantity.value)) {
         valid = false;
         document.getElementById('nameValidation').innerHTML = "Quantity is not a number";
         document.getElementById('nameValidation').hidden = false;
     }
 
+	//Must enter something for price
     if (price.value == "") {
         valid = false;
         document.getElementById('nameValidation').innerHTML = "You must enter a price";
         document.getElementById('nameValidation').hidden = false;
     }
 
+	//Price must be a number
     if (isNaN(price.value)) {
         valid = false;
         document.getElementById('nameValidation').innerHTML = "Price is not a number";
         document.getElementById('nameValidation').hidden = false;
     }
 
+	//If discount field was blank, default it to be equal to the normal price
+	if (discount.value=="") {
+		discount.value = price.value
+	}
+	
+	
+	//Needs to be less than the normal price
+	if (isNaN(discount.value)) {
+		valid = false;
+		document.getElementById('nameValidation').innerHTML = "Discount Price is not a number.";
+		document.getElementById('nameValidation').hidden = false;	
+	}
+    
+	//check to make sure discount price is less than price
+	if (discount.value > price.value) {
+		valid=false;
+		document.getElementById('nameValidation').innerHTML = "Discount Price must be less than the normal Price";
+		document.getElementById('nameValidation').hidden = false;	
+	}
+	
+	
     if (valid) {
         productIDValue = product_id.value;
         initialNameValue = initialName.value;

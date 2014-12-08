@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title><?php echo $title; ?></title>
-		<link rel="stylesheet" href="files/css/style.css" type="text/css" /> <!-- Change this if you use your own style sheet with a different name -->
+		<link rel="stylesheet" href="files/css/style.css" type="text/css" /> 
 		<script type="text/javascript" src="files/js/search.js"></script>
 
 	</head>

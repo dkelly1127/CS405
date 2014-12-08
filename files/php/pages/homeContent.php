@@ -12,7 +12,7 @@ if(isset($_GET['cat'])) {
 	
     $category_name = mysqli_query($link, $categoryName);
     while($row=mysqli_fetch_array($category_name)){
-	    echo "<h2>".$row['category']."</h2>";
+	    echo "<h2>".$row['category_name']."</h2>";
 	}
 
 	while ($row = @ mysqli_fetch_array($categoryResults)) {
@@ -27,7 +27,7 @@ if(isset($_GET['cat'])) {
 			"<div class= 'imageContainer'>".
 			"<p class='productImage'><a href='index.php?pid=$pid'>".'<img src="admin/files/images/productImages/'.$row['image'].'" alt="'.htmlspecialchars($row['product_name']).'"  /></a></p>'.  //Change the image source here if you change the destination of where images are uploaded to.
 			"</div>".
-			"<p>£$price</p>".
+			"<p>\$$price</p>".
 			"</div>";
 			$i++;
 

@@ -7,13 +7,14 @@
 	$numberOfProducts = mysqli_num_rows($numberOfProductsTable);
 	if ($numberOfProducts == 0) {
 		echo "<p>There are currently no products to update.</p>\r\n";
-		echo "<p>Please use add to create some products first.</p>\r\n";
+		echo "<p>Please use Add Product to create some products first.</p>\r\n";
 		return;
 	}
+?>
+	<section id="update">
+	<p id="successMessage" class="successMessage" hidden>The product has been updated successfully</p>
 
-	echo "<section id=\"update\">\r\n";
-	echo "<p id=\"successMessage\" class=\"successMessage\" hidden>The product has been updated successfully</p>\r\n";
-
+	<?php
 	if (!isset($_POST['selectedProduct'])) {
 		echo "<p class=\"noBottomMargin\">Please select the product you wish to update.</p>\n\r";
 		echo "<select id=\"productToUpdate\">\r\n";
@@ -39,7 +40,8 @@
 		foreach($getProductDetailsRow as $key => $value) {
 			$$key = $value;
 		}
-
+	
+	
 		//Form to input data
 		echo "<input id=\"product_id\" type=\"hidden\" value=\"$product_id\">\r\n";
 		echo "<input id=\"initialName\" type=\"hidden\" value=\"$product_name\">\r\n";
@@ -55,8 +57,8 @@
 			  </form>
 		      <iframe id=\"uploadTarget\" name=\"uploadTarget\" src=\"#\" style=\"width:0;height:0;border:0px solid #fff;\"></iframe>  ";
 		echo "<p>Quantity: <input type=\"textarea\" id=\"quantity\" value=\"$quantity\"/></p>\r\n";
-		echo "<p>Price: <input type=\"textarea\" id=\"price\" value=\"$price\"/></p>\r\n";
-		echo "<p>Discount: <input type=\"textarea\" id=\"discount\" value=\"$discount\"/></p>\r\n";
+		echo "<p>Price:$ <input type=\"textarea\" id=\"price\" value=\"$price\"/></p>\r\n";
+		echo "<p>Discount Price:$ <input type=\"textarea\" id=\"discount\" value=\"$discount\"/></p>\r\n";
 		echo "<p><input id=\"makeChangesSubmit\" type=\"button\" value=\"Submit\"/><img id=\"loadingImage\" src=\"files/images/loading.gif\" alt=\"loading\" hidden/></p>\r\n";
 	}
 	echo "</section>\r\n";

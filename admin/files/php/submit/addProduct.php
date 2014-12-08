@@ -24,7 +24,6 @@ if ($checkForDuplicateNameRowCount != 0) {
 }
 
 
-
 //Auto increments product_id, the last discount value is always 0 by default. Manager has to put it on sale later
 $addNewProduct = "INSERT INTO product VALUES (DEFAULT, '$product_name', '$description', '$quantity', '$category_id', '$price', '$image', '$discount');";
 mysqli_query($link, $addNewProduct) or die("addNewProduct in\nfiles/php/submit/add.php\n\r".mysqli_error($link));

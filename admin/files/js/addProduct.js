@@ -38,26 +38,21 @@ var submitButtonPressed = function(e) {
       image          = document.getElementById("myfile"),
       loadingImage   = document.getElementById("loadingImage");
 	  
-	var categoryIDValue = category.options[category.selectedIndex].value
+	var categoryIDValue = category.options[category.selectedIndex].value //Gets the category ID number
 	successMessage.hidden = true;
 	nameError.hidden = true;
 	nameError.innerHTML = "The name is Required";
 	loadingImage.hidden = false;
-
-	console.log(categoryIDValue)
 	
 	var valid = true;
-
+	
+	
+	
   	if (name.value == "") {
   		valid = false;
   		nameError.hidden = false;
   	}
 	
-	/*if (NaN(categoryIDValue)) {
-		valid = false;
-		document.getElementById('nameValidation').innerHTML = "The category ID was not a number";
-		document.getElementById('nameValidation').hidden = false;	
-	}*/
 	
     if (description.value == "") {
       valid = false;
@@ -95,20 +90,26 @@ var submitButtonPressed = function(e) {
         document.getElementById('nameValidation').hidden = false;
     }
 
-	//TODO need to validate data for the discount fields
-	//Needs to be a percentage discount, between 0 and 1
-	/*if (isNAN(discount.value)){
+	
+	//If discount field was blank, default it to be equal to the normal price
+	if (discount.value=="") {
+		discount.value = price.value
+	}
+	
+	
+	//Needs to be less than the normal price
+	if (isNaN(discount.value)) {
 		valid = false;
-		document.getElementById('nameValidation').innerHTML = "Discount is not a number.";
+		document.getElementById('nameValidation').innerHTML = "Discount Price is not a number.";
 		document.getElementById('nameValidation').hidden = false;	
 	}
     
-	//after it checks if it's a number
-	if (discount.value > 1.0 || discount.value < 0.0) {
+	//check to make sure discount price is less than price
+	if ((discount.value) > (price.value)) {
 		valid=false;
-		document.getElementById('nameValidation').innerHTML = "Discount value must be a % between 0 and 1.";
+		document.getElementById('nameValidation').innerHTML = "Discount Price must be less than the normal Price";
 		document.getElementById('nameValidation').hidden = false;	
-	}*/
+	}
 	
 	if (valid) {
     	nameValue = name.value.replace("'","''");//Cleans up apostrophes for the SQL query
@@ -117,7 +118,7 @@ var submitButtonPressed = function(e) {
         priceValue = price.value;
 		discountValue = discount.value;
         console.log(image.value);
-        imageValue = image.value.replace("C:\\fakepath\\", ""); //CHANGE THIS IF NEEDED
+        imageValue = image.value.replace("C:\\fakepath\\", ""); //might need to change this?
         console.log(imageValue);
         submitData(nameValue, descriptionValue, categoryIDValue, quantityValue, priceValue, imageValue, discountValue);
 	} else {
